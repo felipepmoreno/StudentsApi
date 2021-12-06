@@ -1,4 +1,5 @@
 using AlunosApi.Context;
+using AlunosApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,8 +31,12 @@ namespace AlunosApi
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString(""))
+                //utiliza o que foi configurado no appsettings.json
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<IAlunoService, AlunosService>();
+            //Toda vez que referenciar IAluno Service, ele me dará uma implementação dessa interface
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
