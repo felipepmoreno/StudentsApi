@@ -39,7 +39,7 @@ namespace AlunosApi.Controllers
             }
             catch
             {
-                //return BadRequest("Request Inválido"); / pode ser uma alternativa, assim como a de baixo
+                //return BadRequest("Request Inválido");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter alunos");
             }
         }
