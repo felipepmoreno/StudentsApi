@@ -94,7 +94,7 @@ namespace AlunosApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult> Edit(int id, [FromBody]Aluno aluno)
         {
             try
