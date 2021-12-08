@@ -114,5 +114,27 @@ namespace AlunosApi.Controllers
                 return BadRequest("Request Inválido");
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+            {
+                var aluno = await _alunoService.GetAluno(id);
+                if (aluno != null)
+                {
+                    await _alunoService.DeleteAluno(aluno);
+                    return Ok($"Aluno de {id} foi excluído com sucesso");
+                }
+                else
+                {
+                    return NotFound("Aluno não encontrado");
+                }
+            }
+            catch
+            {
+                return BadRequest("Request Inválido");
+            }
+        }
     }
 }
